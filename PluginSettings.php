@@ -3,6 +3,11 @@ namespace Vanderbilt\PluginSettings;
 
 class PluginSettings extends \ExternalModules\AbstractExternalModule{
 
+	public function __construct(){
+		parent::__construct();
+		$this->disableUserBasedSettingPermissions();
+	}
+
 	protected function getSettingKeyPrefix(){
 		$requestUri = $_SERVER['REQUEST_URI'];
 
