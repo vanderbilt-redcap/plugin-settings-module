@@ -1,7 +1,7 @@
 {
 	"name": "Plugin Settings",
 	"namespace": "Vanderbilt\\PluginSettings",
-	"description": "Makes it possible for Expands settings support to Gives plugins the ability to store settings like External Modules do.",
+	"description": "Gives plugins the ability to store settings like External Modules do.",
 	"authors": [
 		{
 			"name": "Mark McEver",
