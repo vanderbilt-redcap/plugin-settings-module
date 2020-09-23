@@ -20,7 +20,7 @@ class PluginSettings extends \ExternalModules\AbstractExternalModule{
 			$filename = self::getAbsolutePathOfScript();
 			if ($filename) {
 				$redcapRoot = realpath(APP_PATH_DOCROOT . "../");
-				$parts = explode($redcapRoot . 'plugins/', $filename);
+				$parts = explode($redcapRoot . '/plugins/', $filename);
 			}
 		}
 		if(count($parts) != 2){
