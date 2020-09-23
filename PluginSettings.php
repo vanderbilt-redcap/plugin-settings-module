@@ -11,7 +11,17 @@ class PluginSettings extends \ExternalModules\AbstractExternalModule{
 	protected function getSettingKeyPrefix(){
 		$requestUri = $_SERVER['REQUEST_URI'];
 
-		$parts = explode(APP_PATH_WEBROOT_PARENT . 'plugins/', $requestUri);
+		$parts = [];
+		if ($requestUri) {
+			# web
+			$parts = explode(APP_PATH_WEBROOT_PARENT . 'plugins/', $requestUri);
+		} else {
+			# command line
+			$filename = self::getAbsolutePathOfScript();
+			if ($filename) {
+				$parts = explode(APP_PATH_DOCROOT . 'plugins/', $filename);
+			}
+		}
 		if(count($parts) != 2){
 			// This method should not be called outside of plugin URIs, but let's just return the default here to be safe.
 			return parent::getSettingKeyPrefix();
@@ -21,5 +31,12 @@ class PluginSettings extends \ExternalModules\AbstractExternalModule{
 		$pluginDir = $parts[0];
 
 		return $pluginDir . '_';
+	}
+
+	protected static function getAbsolutePathOfScript() {
+		if ($argv[0]) {
+			return realpath($argv[0]);
+		}
+		return "";
 	}
 }
